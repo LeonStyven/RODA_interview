@@ -13,12 +13,13 @@ engine = create_engine(
 # Fábrica de sesiones de SQLAlchemy
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)
 
-// Testeo de salud de la base de datos
+# Testeo de salud de la base de datos
 def db_healthcheck() -> bool:
     """Devuelve True si SELECT 1 funciona contra la DB."""
     try:
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
         return True
-    except Exception:
+    except Exception as e:
+        print(f"Database health check failed: {e}")
         return False

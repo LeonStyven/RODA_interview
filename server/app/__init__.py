@@ -18,14 +18,12 @@ def create_app():
         # Confirmacion de carga de config
         return {"config": settings.as_public_dict()}
 
-    @app.get("/health")
+    @app.get("/health")                       # <-- nuevo
     def health():
-        ok - db_healthcheck()
-        return(
-            {
-                "status": "ok" if ok else {"error", "Database connection failed"},
-            },
-            200 if ok else 500,
+        ok = db_healthcheck()
+        return (
+            {"status": "ok"} if ok else {"status": "error", "detail": "db unreachable: {error}"},
+            200 if ok else 500
         )
 
 
