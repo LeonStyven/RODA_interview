@@ -28,12 +28,31 @@ def parse_pagination():
 @bp_clientes.get("/")
 def list_clientes_min():
     page, size = parse_pagination()
+    offset = (page - 1) * size
 
     with db_session() as db:
         total = db.execute(select(func.count(Cliente.cliente_id))).scalar() or 0
 
+
+        # Consulta principal con paginación
+        rows = db.execute(
+            select(Cliente)
+            .order_by(Cliente.cliente_id.asc())
+            .offset(offset)
+            .limit(size)
+        ).scalars().all()
+
+    data = [
+        {
+            "cliente_id": c.cliente_id,
+            "nombre": c.nombre,
+            "ciudad": c.ciudad,
+        }
+        for c in rows
+    ]
+
     return jsonify({
-        "data": [],
+        "data": data,
         "pagination": {"page": page, "per_page": size, "total": total}
 
     }), 200
