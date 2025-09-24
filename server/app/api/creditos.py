@@ -22,6 +22,7 @@ def parse_pagination():
 
 @bp_creditos.get("/")
 def list_creditos_handler():
+    #Validacion del cliente
     cliente_id_raw = request.args.get("cliente_id")
     if not cliente_id_raw:
         return jsonify({"error": "El ID del cliente es requerido"}), 400
@@ -30,11 +31,14 @@ def list_creditos_handler():
     except ValueError:
         return jsonify({"error": "El ID del cliente debe ser numérico"}), 400
 
+    #Control de paginacion
     page, size = parse_pagination()
 
-
+    # Consulta del servicio
     data, total = list_credits(cliente_id, page, size)
 
+
+    #Respuesta
     return jsonify({
         "data": data,
         "pagination": {"page": page, "per_page": size, "total": total}

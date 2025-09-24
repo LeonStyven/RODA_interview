@@ -1,7 +1,9 @@
 # Este módulo registra todos los blueprints del API.
 from flask import Flask
 from .clientes import bp_clientes
+from .creditos import bp_creditos
 
 def register_api(app: Flask) -> None:
-    """Registra todos los blueprints del API en la app."""
+    """Listado de todos los blueprints del API en la app."""
     app.register_blueprint(bp_clientes)
+    app.register_blueprint(bp_creditos)
