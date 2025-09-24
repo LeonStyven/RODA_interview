@@ -1,5 +1,3 @@
-import type { Pagination } from "../../../shared/interfaces/pagination.interface";
-
 export type Credito = {
   credito_id: number;
   cliente_id: number;
@@ -10,9 +8,4 @@ export type Credito = {
   fecha_desembolso: string | null;
   fecha_inicio_pago: string | null;
   estado: string;
-};
-
-export type CreditosResponse = {
-  data: Credito[];
-  pagination: Pagination;
 };
