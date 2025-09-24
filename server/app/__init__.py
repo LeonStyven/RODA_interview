@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from .config import settings
 from .db import db_healthcheck
-from .routes_clientes import bp_clientes
+from .api import register_api
 
 
 
@@ -28,7 +28,7 @@ def create_app():
             200 if ok else 500
         )
 
-    app.register_blueprint(bp_clientes)
+    register_api(app)
 
 
     

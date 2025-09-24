@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from sqlalchemy import select, func
-from .utils import db_session
-from.models import Cliente
+from ..utils import db_session
+from..models import Cliente
 
 bp_clientes = Blueprint('clientes', __name__, url_prefix='/clientes')
 
