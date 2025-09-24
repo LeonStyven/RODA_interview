@@ -4,7 +4,7 @@ import AppLayout from "../../../shared/layouts/AppLayout";
 import Paginator from "../../../shared/components/Paginator";
 import ClientsTable from "../components/ClientsTable";
 import ScheduleTable from "../../schedule/components/ScheduleTable";
-
+import CreditsList from "../../credits/components/CreditsList";
 
 
 import { fetchClientes } from "../services/clients.service";
@@ -68,8 +68,6 @@ export default function ClientsHome() {
         setSchTotal(resp.pagination.total);   // ← guardar el total
     }
 
-    const maxPage = Math.max(1, Math.ceil(total / pageSize));
-
     return (
         <AppLayout>
         <section className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
@@ -85,23 +83,11 @@ export default function ClientsHome() {
 
         {selectedCliente && (
             <section className="mt-4 rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
-            <h3 className="text-lg font-semibold">Créditos de {selectedCliente.nombre}</h3>
-            {creditos.length === 0 ? (
-                <p className="mt-2 text-sm text-neutral-500">Sin créditos</p>
-            ) : (
-                <ul className="mt-3 space-y-2">
-                {creditos.map((cr) => (
-                    <li key={cr.credito_id}>
-                    <button
-                        className="rounded-md border px-3 py-1 text-left hover:bg-neutral-50"
-                        onClick={() => handleSelectCredito(cr)}
-                    >
-                        <span className="font-medium">#{cr.credito_id}</span> — {cr.producto} — ${cr.inversion} — {cr.estado}
-                    </button>
-                    </li>
-                ))}
-                </ul>
-            )}
+                <h3 className="text-lg font-semibold">
+                Créditos de {selectedCliente.nombre}
+                </h3>
+                <CreditsList data={creditos} onSelect={handleSelectCredito} />
+
             </section>
         )}
 
