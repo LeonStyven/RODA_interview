@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import AppLayout from "../../../shared/layouts/AppLayout";
 
+import Paginator from "../../../shared/components/Paginator";
+
 import { fetchClientes } from "../services/clients.service";
 import { fetchCreditos } from "../../credits/services/credits.service";
 import { fetchCronograma } from "../../schedule/services/shedule.service";
@@ -61,25 +63,12 @@ export default function ClientsHome() {
             </li>
           ))}
         </ul>
-        <div className="mt-3 flex items-center gap-2">
-          <button
-            className="rounded-md border px-3 py-1 disabled:opacity-50"
-            onClick={() => setPage((p) => Math.max(1, p - 1))}
-            disabled={page <= 1}
-          >
-            ◀ Anterior
-          </button>
-          <span className="text-sm text-neutral-600">
-            Página {page} / {maxPage}
-          </span>
-          <button
-            className="rounded-md border px-3 py-1 disabled:opacity-50"
-            onClick={() => setPage((p) => Math.min(maxPage, p + 1))}
-            disabled={page >= maxPage}
-          >
-            Siguiente ▶
-          </button>
-        </div>
+        <Paginator
+            page={page}
+            pageSize={pageSize}
+            total={total}
+            onChange={(p) => setPage(p)}
+            />
       </section>
 
       {/* Créditos */}
