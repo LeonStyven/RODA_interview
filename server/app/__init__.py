@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from .config import settings
+from .db import db_healthcheck
 
 
 def create_app():
@@ -16,5 +17,21 @@ def create_app():
     def config_public():
         # Confirmacion de carga de config
         return {"config": settings.as_public_dict()}
+
+    @app.get("/health")
+    def health():
+        ok - db_healthcheck()
+        return(
+            {
+                "status": "ok" if ok else {"error", "Database connection failed"},
+            },
+            200 if ok else 500,
+        )
+
+
+
+
+
+
     
     return app
