@@ -26,7 +26,7 @@ def list_credits(cliente_id: int, page: int, page_size: int):
             "cliente_id": c.cliente_id,
             "producto": c.producto,
             "inversion": float(c.inversion),
-            "coutas_totales": c.coutas_totales,
+            "cuotas_totales": c.cuotas_totales,
             "tea": float(c.tea),
             "fecha_desembolso": c.fecha_desembolso.isoformat() if isinstance(c.fecha_desembolso, datetime) else None,
             "fecha_inicio_pago": c.fecha_inicio_pago.isoformat() if isinstance(c.fecha_inicio_pago, datetime) else None,
