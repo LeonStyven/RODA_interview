@@ -1,4 +1,7 @@
 from flask import Blueprint, request, jsonify
+from sqlalchemy import select, func
+from .utils import db_session
+from.models import Cliente
 
 bp_clientes = Blueprint('clientes', __name__, url_prefix='/clientes')
 
@@ -24,10 +27,13 @@ def parse_pagination():
 
 @bp_clientes.get("/")
 def list_clientes_min():
-
     page, size = parse_pagination()
+
+    with db_session() as db:
+        total = db.execute(select(func.count(Cliente.cliente_id))).scalar() or 0
+
     return jsonify({
         "data": [],
-        "pagination": {"page": page, "per_page": size, "total": 0}
+        "pagination": {"page": page, "per_page": size, "total": total}
 
     }), 200

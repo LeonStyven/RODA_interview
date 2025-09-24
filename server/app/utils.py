@@ -6,6 +6,6 @@ def db_session():
     
     db = SessionLocal()
     try:
-        tield db
+        yield db
     finally:
         db.close()
