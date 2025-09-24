@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from .infra.db import SessionLocal
+from .db import SessionLocal
 
 @contextmanager
 def db_session():

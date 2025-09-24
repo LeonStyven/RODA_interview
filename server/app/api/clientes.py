@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from sqlalchemy import select, func
-from ..utils import db_session
+from ..infra.session import db_session
 from ..domain import Cliente
 
 bp_clientes = Blueprint('clientes', __name__, url_prefix='/clientes')
