@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from .config import settings
-from .db import db_healthcheck
+from .infra.db import db_healthcheck
 from .api import register_api
 
 

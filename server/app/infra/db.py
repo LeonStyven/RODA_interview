@@ -1,7 +1,10 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
+from ..config import settings
 
-from .config import settings
+# Validación de la configuración
+if not settings.DATABASE_URL:
+    raise ValueError("DATABASE_URL is not set. Please check your environment variables.")
 
 # Crea el engine de SQLAlchemy usando la URL de la base de datos desde Settings
 engine = create_engine(
