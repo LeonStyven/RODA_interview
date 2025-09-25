@@ -64,6 +64,8 @@ export default function ClientsHome() {
           placeholder="Nombre del Cliente" 
           className="input ml-4" 
           value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          aria-label="Buscar clientes por nombre"
       />
 
       {/* Tabla */}
