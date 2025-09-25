@@ -13,7 +13,7 @@ export default function CreditsList({ data, onSelect }: Props) {
   return (
     <tbody>
       {data.map((cr) => (
-        <tr className="hover:bg-base-300" onClick={() => onSelect(cr)}>
+        <tr className="hover:bg-base-300 cursor-pointer" onClick={() => onSelect(cr)}>
           <th></th>
           <th>{cr.credito_id}</th>
           <th>{cr.producto}</th>

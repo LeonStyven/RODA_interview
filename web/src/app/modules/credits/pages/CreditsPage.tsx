@@ -38,7 +38,7 @@ export default function CreditsPage() {
       </div>
       <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table className="table">
-          <thead>
+          <thead className="bg-base-200 text-base-100">
             <tr>
               <th></th>
               <th>ID</th>

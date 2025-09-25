@@ -9,7 +9,7 @@ export default function ClientsTable({ data, onSelect }: Props) {
   return (
       <tbody>
         {data.map((c) => (
-          <tr className="hover:bg-base-300" onClick={() => onSelect(c)}>
+          <tr className="hover:bg-base-300 cursor-pointer" onClick={() => onSelect(c)}>
             <th></th>
             <th>{c.cliente_id}</th>
             <th>{c.nombre}</th>
