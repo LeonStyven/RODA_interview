@@ -69,7 +69,7 @@ export default function ClientsHome() {
       {/* Tabla */}
       <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-4">
         <table className="table">
-          <thead className="bg-base-200">
+          <thead className="bg-base-200 text-base-100">
             <tr>
               <th></th>
               <th>ID</th>

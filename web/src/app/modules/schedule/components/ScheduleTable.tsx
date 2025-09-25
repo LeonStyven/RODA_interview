@@ -14,7 +14,7 @@ export default function ScheduleTable({ data }: Props) {
       {data.map((q) => (
         <tr className="hover:bg-base-300">
           <th></th>
-          <th>{q.credito_id}</th>
+          <th>{q.num_cuota}</th>
           <th>{q.fecha_pago ? q.fecha_pago : "Sin Fecha"}</th>
           <th>{q.monto}</th>
           <th>

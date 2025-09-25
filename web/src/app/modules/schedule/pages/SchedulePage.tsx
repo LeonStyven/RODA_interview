@@ -38,7 +38,7 @@ export default function SchedulePage() {
           <thead>
             <tr>
               <th></th>
-              <th>ID</th>
+              <th>Cuota</th>
               <th>Fecha de Vencimiento</th>
               <th>Estado</th>
               <th></th>
