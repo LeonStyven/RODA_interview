@@ -1,101 +1,69 @@
-# 🚲 Roda — Prueba Técnica (Desarrollador Jr.)
+# 🚲 Roda — Cronograma de pagos (MVP)
 
-Este proyecto implementa un **MVP** para la gestión de clientes, créditos y cronogramas de pago en **Roda**, con un stack moderno:
+Aplicación full‑stack para visualizar el cronograma de pagos de créditos (Roda). Incluye API en Python (Flask) y UI en React. Base de datos local PostgreSQL con esquema y seed proporcionados.
 
-- **Backend:** Python 3 + Flask + SQLAlchemy + PostgreSQL  
-- **Frontend:** React + TypeScript + Vite + TailwindCSS  
-- **Arquitectura:** Modular (api, services, domain, infra)
+— Máx. 1 pág —
 
----
+## Cómo correr la app (local)
 
-## 📂 Estructura
+Requisitos: Python 3.11+, Node 18+, PostgreSQL 14+ (o superior).
 
-```
-server/               # Backend Flask
-  app/
-    api/              # Blueprints de endpoints
-    services/         # Lógica de negocio
-    domain/           # Modelos SQLAlchemy
-    infra/            # Conexión DB
-  .env                # Variables entorno (DB)
-  requirements.txt
-  wsgi.py             # Entry point
-
-web/                  # Frontend React + TS
-  src/app/
-    shared/           # Layouts, rutas, componentes y utils globales
-    modules/
-      clients/        # Clientes: interfaces, componentes, páginas
-      credits/        # Créditos: interfaces, componentes, páginas
-      schedule/       # Cronograma: interfaces, componentes, páginas
-  tailwind.config.js
+1) Base de datos
+- Crear DB y cargar el esquema/seed:
+```bash
+psql -U postgres -c "CREATE DATABASE roda_db;"
+psql -U postgres -d roda_db -f sql/01_schema_seed.sql
 ```
 
----
-
-## ⚙️ Backend
-
-### 1. Instalar dependencias
+2) Backend (Flask)
 ```bash
 cd server
 python -m venv .venv
-.venv\Scripts\activate   # Activar entorno virtual (Windows)
+.venv\Scripts\activate   # Windows PowerShell
 pip install -r requirements.txt
 ```
-
-### 2. Configurar .env
-Crea un archivo `.env` en `server/` con el siguiente contenido:
+Crear `server/.env`:
 ```
-DB_USER=roda
-DB_PASSWORD=123 4
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=roda_db
+DATABASE_URL=postgresql+psycopg2://postgres:YOUR_PASSWORD@localhost:5432/roda_db
+APP_HOST=127.0.0.1
+APP_PORT=8000
+FLASK_ENV=development
 ```
-
-### 3. Ejecutar servidor
+Levantar API:
 ```bash
-.venv\Scripts\activate   # Activar entorno virtual si no lo está
 python wsgi.py
 ```
+API en `http://127.0.0.1:8000`.
 
-👉 Disponible en: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-### 4. Endpoints principales
-- **GET** `/health` → Estado del servidor
-- **GET** `/clientes?page=1&page_size=10`
-- **GET** `/creditos?cliente_id=1&page=1&page_size=10`
-- **GET** `/cronograma?credito_id=1&page=1&page_size=12`
-
----
-
-## 🎨 Frontend
-
-### 1. Instalar dependencias
+3) Frontend (React + Vite)
 ```bash
 cd web
 npm install
 ```
-
-### 2. Configurar .env
-Crea un archivo `.env` en `web/` con el siguiente contenido:
+Crear `web/.env`:
 ```
 VITE_API_BASE_URL=http://127.0.0.1:8000
 ```
-
-### 3. Ejecutar
+Arrancar:
 ```bash
 npm run dev
 ```
+App en `http://localhost:5173`.
 
-👉 Disponible en: [http://localhost:5173](http://localhost:5173)
+## API (mínimo)
+- GET `/health` → estado de servicio/DB
+- GET `/clientes/?page=1&page_size=10&search=...`
+- GET `/creditos/?cliente_id=1&page=1&page_size=10`
+- GET `/cronograma/?credito_id=1&page=1&page_size=12`
 
----
+## Decisiones y trade‑offs
+- Backend en Flask por simplicidad y control explícito de blueprints, CORS y manejo de errores; SQLAlchemy para portabilidad y sesiones transaccionales.
+- Config vía `.env` y `DATABASE_URL` única (evita credenciales dispersas). `as_public_dict()` enmascara secretos en `/config`.
+- Paginación uniforme (`page`, `page_size`) y validaciones con respuestas JSON consistentes (handlers centralizados).
+- Consultas optimizadas usando índices provistos; `db_healthcheck()` para readiness.
+- Frontend en React + TypeScript + Vite por DX y velocidad. UI con paleta Roda (`#000000`, `#0C0D0D`, `#FFFFFF`, `#EBFF00`, `#C6F833`, `#B794F6`).
+- UX: listados paginados; flujo Clientes → Créditos → Cronograma; búsqueda básica de clientes (`search`).
 
-## 🚦 Flujo de navegación
-
-- **`/clientes`** → Listado paginado de clientes  
-- **`/clientes/:clienteId/creditos`** → Créditos del cliente  
-- **`/clientes/:clienteId/creditos/:creditoId`** → Cronograma con paginación  
-
----
+Notas
+- La BD es local; no hay credenciales externas.
+- Archivo SQL de esquema y seed: `sql/01_schema_seed.sql`.
