@@ -1,5 +1,6 @@
-import ClientsHome from "./app/modules/clients/pages/ClientsHome";
+import AppRouter from "./app/AppRouter";
 export default function App() {
-  return <ClientsHome />;
+  return <AppRouter />;
 }
+
 
