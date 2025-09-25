@@ -15,8 +15,8 @@ export default function ScheduleTable({ data }: Props) {
         <tr className="hover:bg-base-300">
           <th></th>
           <th>{q.credito_id}</th>
-          <th>{q.fecha_vencimiento ? q.fecha_vencimiento : "Sin Fecha"}</th>
-          <th>{q.valor_cuota}</th>
+          <th>{q.fecha_pago ? q.fecha_pago : "Sin Fecha"}</th>
+          <th>{q.monto}</th>
           <th>
             {q.estado === "pendiente" ? (
               <div className="badge badge-soft badge-ghost">{q.estado}</div>

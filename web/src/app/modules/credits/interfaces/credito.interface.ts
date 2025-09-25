@@ -5,7 +5,7 @@ export type Credito = {
   inversion: number;
   cuotas_totales: number;
   tea: number;
-  fecha_desembolso: string | null;
-  fecha_inicio_pago: string | null;
+  fecha_desembolso: string;
+  fecha_inicio_pago: string;
   estado: string;
 };
