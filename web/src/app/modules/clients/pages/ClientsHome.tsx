@@ -55,16 +55,12 @@ export default function ClientsHome() {
             <section className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
                 <h2 className="text-lg font-semibold">Clientes</h2>
                 {/* Input de busqueda */}
-                <div className="mt-3">
-                    <input
-                    type="text"
+                <input 
+                    type="text" 
+                    placeholder="Nombre del Cliente" 
+                    className="input" 
                     value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Buscar por nombre (prefijo)..."
-                    className="w-full rounded-md border px-3 py-2 outline-none focus:ring-2 focus:ring-neutral-300"
-                    aria-label="Buscar clientes por nombre"
-                    />
-                </div>
+                />
                 {/* Tabla */}
                 <ClientsTable 
                     data={clientes} 
@@ -79,5 +75,34 @@ export default function ClientsHome() {
                 />
             </section>
         </AppLayout>
-    );
+
+);
 }
+
+{/* 
+    <AppLayout>
+      <div className="mb-3">
+        <Link className="text-sm text-blue-600 hover:underline" to={PATHS.clientes}>
+          ← Volver a clientes
+        </Link>
+      </div>
+      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table className="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Producto</th>
+              <th>Inversion</th>
+              <th>Estado</th>
+              <th>Desembolso</th>
+              <th>Cuotas</th>
+              <th></th>
+            </tr>
+          </thead>
+          <CreditsList data={creditos} onSelect={handleSelectCredito} />
+        </table>
+      </div>      
+    </AppLayout> 
+*/}
+

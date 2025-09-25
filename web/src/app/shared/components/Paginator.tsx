@@ -10,7 +10,7 @@ type Props = {
     className?: string;
 }
 
-export default function Paginator({ page, pageSize, total, onChange, className = "" }: Props) {
+export default function Paginator({ page, pageSize, total, onChange }: Props) {
     const maxPage = Math.max(1, Math.ceil(total / pageSize));
     const canPrev = page > 1;
     const canNext = page < maxPage;
@@ -25,32 +25,38 @@ export default function Paginator({ page, pageSize, total, onChange, className =
     }
 
     return (
-        <div className={`mt-3 flex items-center gap-2 ${className}`}>
-        <button
-            type="button"
-            onClick={goPrev}
-            disabled={!canPrev}
-            className="rounded-md border px-3 py-1 disabled:opacity-50"
-            aria-label="Página anterior"
-        >
-            <FontAwesomeIcon icon={faChevronLeft} />
-             Anterior
-        </button>
-        <span className="text-sm text-neutral-600">
-            Página {page} / {maxPage}
-        </span>
-        <button
-            type="button"
-            onClick={goNext}
-            disabled={!canNext}
-            className="rounded-md border px-3 py-1 disabled:opacity-50"
-            aria-label="Página siguiente"
-        >
-            Siguiente 
-            <FontAwesomeIcon icon={faChevronRight} />
-        </button>
-        </div>
+
+        <div className="join">
+            {!canPrev ? (
+                <button 
+                    className="join-item btn-disabled" 
+                >
+                    <FontAwesomeIcon icon={faChevronLeft} /> Anterior
+                </button>
+            ) : <button 
+                    className="join-item btn btn" 
+                    onClick={goPrev}
+                >
+                    <FontAwesomeIcon icon={faChevronLeft} /> Anterior
+                </button>
+            }
+            
+            <button className="join-item btn"> Página {page} / {maxPage} </button>
+
+            {!canNext ? (
+                <button 
+                    className="join-item btn-disabled" 
+                >
+                    Siguiente <FontAwesomeIcon icon={faChevronRight} />
+                </button>
+            ) : <button 
+                    className="join-item btn btn" 
+                    onClick={goNext}
+                >
+                    <FontAwesomeIcon icon={faChevronLeft} /> Anterior
+                </button>
+            }
+        </div> 
     );
 
 }
-
