@@ -3,6 +3,7 @@ from flask_cors import CORS
 from .config import settings
 from .infra.db import db_healthcheck
 from .api import register_api
+from .api.errors import register_error_handlers
 
 
 
@@ -29,7 +30,7 @@ def create_app():
         )
 
     register_api(app)
-
+    register_error_handlers(app)
 
     
     return app
