@@ -6,6 +6,9 @@ import { fetchCreditos } from "../services/credits.service";
 import type { Credito } from "../interfaces/credito.interface";
 import CreditsList from "../components/CreditsList";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+
 export default function CreditsPage() {
   const location = useLocation() as { state?: { clienteNombre?: string } };
   const clienteNombre = location.state?.clienteNombre;
@@ -29,7 +32,7 @@ export default function CreditsPage() {
   return (
     <AppLayout>
       <div className="mb-3">
-        <Link className="text-sm text-blue-600 hover:underline" to={PATHS.clientes}>
+        <Link className="btn btn-soft ml-4" to={PATHS.clientes}>
           ← Volver a clientes
         </Link>
       </div>

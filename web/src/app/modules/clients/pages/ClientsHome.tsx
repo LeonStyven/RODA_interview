@@ -56,7 +56,6 @@ export default function ClientsHome() {
 
   return (
     <AppLayout>
-      <h2 className="text-3xl font-semibold mb-4">Clientes</h2>
 
       {/* Input de busqueda */}
       <FontAwesomeIcon icon={faFilter} />
@@ -68,9 +67,9 @@ export default function ClientsHome() {
       />
 
       {/* Tabla */}
-      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-10">
+      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-4">
         <table className="table">
-          <thead>
+          <thead className="bg-base-200">
             <tr>
               <th></th>
               <th>ID</th>
