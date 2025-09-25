@@ -10,25 +10,28 @@ export default function ScheduleTable({ data }: Props) {
   }
 
   return (
-    <table className="mt-2 w-full border-collapse">
-      <thead>
-        <tr className="border-b">
-          <th className="py-2 text-left">#</th>
-          <th className="py-2 text-left">Vence</th>
-          <th className="py-2 text-left">Cuota</th>
-          <th className="py-2 text-left">Estado</th>
+    <tbody>
+      {data.map((q) => (
+        <tr className="hover:bg-base-300">
+          <th></th>
+          <th>{q.credito_id}</th>
+          <th>{q.fecha_vencimiento ? q.fecha_vencimiento : "Sin Fecha"}</th>
+          <th>{q.valor_cuota}</th>
+          <th>
+            {q.estado === "pendiente" ? (
+              <div className="badge badge-soft badge-ghost">{q.estado}</div>
+            ) : q.estado === "parcial" ? (
+              <div className="badge badge-soft badge-warning">{q.estado}</div>
+            ) : q.estado === "pagada" ? (
+              <div className="badge badge-soft badge-success">{q.estado}</div>
+
+            ) : <div className="badge badge-soft badge-error">{q.estado}</div>
+          }
+          </th>
+          <th></th>
         </tr>
-      </thead>
-      <tbody>
-        {data.map((q) => (
-          <tr key={q.schedule_id} className="border-b">
-            <td className="py-2">{q.num_cuota}</td>
-            <td className="py-2">{q.fecha_vencimiento}</td>
-            <td className="py-2">${q.valor_cuota}</td>
-            <td className="py-2">{q.estado}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+      ))}
+    </tbody>
+    
   );
 }

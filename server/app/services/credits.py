@@ -1,5 +1,4 @@
 from sqlalchemy import select, func
-from datetime import datetime
 from ..domain import Credito
 from ..infra.session import db_session
 
@@ -28,8 +27,8 @@ def list_credits(cliente_id: int, page: int, page_size: int):
             "inversion": float(c.inversion),
             "cuotas_totales": c.cuotas_totales,
             "tea": float(c.tea),
-            "fecha_desembolso": c.fecha_desembolso.isoformat() if isinstance(c.fecha_desembolso, datetime) else None,
-            "fecha_inicio_pago": c.fecha_inicio_pago.isoformat() if isinstance(c.fecha_inicio_pago, datetime) else None,
+            "fecha_desembolso": c.fecha_desembolso.isoformat() if c.fecha_desembolso else None,
+            "fecha_inicio_pago": c.fecha_inicio_pago.isoformat() if c.fecha_inicio_pago else None,
             "estado": c.estado
         }
         for c in rows

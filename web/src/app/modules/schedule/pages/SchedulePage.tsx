@@ -24,24 +24,30 @@ export default function SchedulePage() {
 
   return (
     <AppLayout>
-      <div className="mb-3 flex gap-4">
-        <Link className="text-sm text-blue-600 hover:underline" to={PATHS.creditos(String(clienteId))}>
-          ← Volver a créditos
+      <div className="mb-3">
+        <Link className="btn btn-soft ml-4" to={PATHS.creditos(String(clienteId))}>
+          ← Volver a creditos
         </Link>
-        <Link className="text-sm text-blue-600 hover:underline" to={PATHS.clientes}>
+        <Link className="btn btn-soft ml-4" to={PATHS.clientes}>
           ← Volver a clientes
         </Link>
       </div>
 
-      <section className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
-        <h2 className="text-lg font-semibold">
-          Cronograma del crédito #{creditoId}
-        </h2>
-
-        <ScheduleTable data={cuotas} />
-
+      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table className="table my-4">
+          <thead>
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Fecha de Vencimiento</th>
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <ScheduleTable data={cuotas} />
+        </table>
         <Paginator page={page} pageSize={pageSize} total={total} onChange={setPage} />
-      </section>
+      </div>
     </AppLayout>
   );
 }

@@ -1,7 +1,6 @@
 from sqlalchemy import select, func
-from ..domain import PaymentSchedule, Pago
+from ..domain import PaymentSchedule
 from ..infra.session import db_session
-from datetime import datetime
 
 def list_schedule(credito_id: int, page: int, page_size: int):
     offset = (page - 1) * page_size
@@ -25,7 +24,7 @@ def list_schedule(credito_id: int, page: int, page_size: int):
             "schedule_id": ps.schedule_id,
             "credito_id": ps.credito_id,
             "num_cuota": ps.num_cuota,
-            "fecha_pago": ps.fecha_vencimiento.isoformat() if isinstance(ps.fecha_vencimiento, datetime) else None,
+            "fecha_pago": ps.fecha_vencimiento.isoformat() if ps.fecha_vencimiento else None,
             "monto": float(ps.valor_cuota),
             "estado": ps.estado
         }
