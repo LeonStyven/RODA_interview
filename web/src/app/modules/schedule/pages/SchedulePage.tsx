@@ -26,10 +26,7 @@ export default function SchedulePage() {
     <AppLayout>
       <div className="mb-3">
         <Link className="btn btn-soft ml-4" to={PATHS.clientes}>
-          ← Volver a clientes
-        </Link>
-        <Link className="btn btn-soft ml-4" to={PATHS.creditos(String(clienteId))}>
-          ← Volver a creditos
+          ← Volver
         </Link>
       </div>
 

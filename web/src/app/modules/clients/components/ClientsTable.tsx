@@ -71,26 +71,10 @@ export default function ClientsTable({ data, onSelect }: Props) {
                           <span className="loading loading-spinner loading-md"></span>
                         </div>
                       ) : (
-                        <div className="overflow-x-auto">
-                          <table className="table table-sm">
-                            <thead>
-                              <tr>
-                                <th></th>
-                                <th>ID Crédito</th>
-                                <th>Producto</th>
-                                <th>Inversión</th>
-                                <th>Estado</th>
-                                <th>Fecha Desembolso</th>
-                                <th>Cuotas Totales</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                            <CreditsList
-                              data={creditsData}
-                              onSelect={(cr) => navigate(PATHS.cronograma(c.cliente_id, cr.credito_id))}
-                            />
-                          </table>
-                        </div>
+                        <CreditsList
+                          data={creditsData}
+                          onSelect={(cr) => navigate(PATHS.cronograma(c.cliente_id, cr.credito_id))}
+                        />
                       )}
                     </div>
                   </div>
