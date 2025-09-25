@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, abort
 from ..services.clientes import list_clients
 
 bp_clientes = Blueprint('clientes', __name__, url_prefix='/clientes')
@@ -9,11 +9,11 @@ def parse_pagination():
     try:
         page = int(raw_page)
     except ValueError:
-        page = 1
+        abort(400, description="page debe ser numérico")
     try:
         size = int(raw_size)
     except ValueError:
-        size = 10
+        abort(400, description="page_size debe ser numérico")
 
     if page < 1:
         page = 1
@@ -24,9 +24,11 @@ def parse_pagination():
     return page, size
 
 @bp_clientes.get("/")
-def list_clientes():
+def list_clientes_handler():
     page, size = parse_pagination()
-    data, total = list_clients(page, size)
+    search = request.args.get("search", None) #Control de la busqueda del user
+
+    data, total = list_clients(page, size, search)
 
 
     return jsonify({
