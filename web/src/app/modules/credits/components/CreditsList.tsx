@@ -11,17 +11,31 @@ export default function CreditsList({ data, onSelect }: Props) {
   }
 
   return (
-    <ul className="mt-3 space-y-2">
+    <tbody>
       {data.map((cr) => (
-        <li key={cr.credito_id}>
-          <button
-            className="w-full rounded-md border px-3 py-1 text-left hover:bg-neutral-50"
-            onClick={() => onSelect(cr)}
-          >
-            <span className="font-medium">#{cr.credito_id}</span> — {cr.producto} — ${cr.inversion} — {cr.estado}
-          </button>
-        </li>
+        <tr className="hover:bg-base-300" onClick={() => onSelect(cr)}>
+          <th></th>
+          <th>{cr.credito_id}</th>
+          <th>{cr.producto}</th>
+          <th>{cr.inversion}</th>
+          <th>
+            {cr.estado === "vigente" ? (
+              <div className="badge badge-soft badge-success">{cr.estado}</div>
+            ) : cr.estado === "cancelado" ? (
+              <div className="badge badge-soft badge-warning">{cr.estado}</div>
+            ) : cr.estado === "cancelado" ? (
+              <div className="badge badge-soft badge-error">{cr.estado}</div>
+
+            ) : <div className="badge badge-soft badge-ghost">{cr.estado}</div>
+          }
+          </th>
+          <th>{cr.fecha_desembolso === "" ? cr.fecha_desembolso : 'Sin fecha'}</th>
+          <th>{cr.cuotas_totales}</th>
+          <th></th>
+        </tr>
       ))}
-    </ul>
+    </tbody>
+      
+    
   );
 }

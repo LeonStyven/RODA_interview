@@ -45,7 +45,9 @@ export default function ClientsHome() {
 
 
     async function handleSelectCliente(c: Cliente) {
-        navigate(PATHS.creditos(c.cliente_id));
+        navigate(PATHS.creditos(c.cliente_id), {
+            state: { clienteNombre: c.nombre },
+        });
     }
 
     return (
