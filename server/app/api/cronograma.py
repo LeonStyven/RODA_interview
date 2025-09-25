@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, abort
 from ..services.schedule import list_schedule
 
 bp_cronograma = Blueprint("cronograma", __name__, url_prefix="/cronograma")
@@ -26,12 +26,12 @@ def list_cronograma_handler():
     #Validar que el credito existas
     credito_id_raw = request.args.get("credito_id")
     if not credito_id_raw:
-        return jsonify({"error": "el ID del credito es requerido"}), 400
+        abort(400, description="credito_id es requerido")
     
     try:
         credito_id = int(credito_id_raw)
     except ValueError:
-        return jsonify({"error": "el ID del credito debe ser numérico"}), 400
+        abort(400, description="credito_id debe ser numérico")
     
     page, size = parse_pagination()
     data, total = list_schedule(credito_id, page, size)

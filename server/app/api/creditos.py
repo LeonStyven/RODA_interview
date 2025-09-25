@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, abort
 from ..services.credits import list_credits
 
 bp_creditos = Blueprint("creditos", __name__, url_prefix="/creditos")
@@ -25,11 +25,13 @@ def list_creditos_handler():
     #Validacion del cliente
     cliente_id_raw = request.args.get("cliente_id")
     if not cliente_id_raw:
-        return jsonify({"error": "El ID del cliente es requerido"}), 400
+        # Validar que cliente_id esté en la BD
+        abort(400, description="cliente_id es requerido")
+
     try:
         cliente_id = int(cliente_id_raw)
     except ValueError:
-        return jsonify({"error": "El ID del cliente debe ser numérico"}), 400
+        abort(400, description="cliente_id debe ser numérico")
 
     #Control de paginacion
     page, size = parse_pagination()
