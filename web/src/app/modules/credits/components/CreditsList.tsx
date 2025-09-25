@@ -29,13 +29,11 @@ export default function CreditsList({ data, onSelect }: Props) {
             ) : <div className="badge badge-soft badge-ghost">{cr.estado}</div>
           }
           </th>
-          <th>{cr.fecha_desembolso === "" ? cr.fecha_desembolso : 'Sin fecha'}</th>
+          <th>{cr.fecha_desembolso !== "" ? cr.fecha_desembolso : 'Sin fecha'}</th>
           <th>{cr.cuotas_totales}</th>
           <th></th>
         </tr>
       ))}
     </tbody>
-      
-    
   );
 }
