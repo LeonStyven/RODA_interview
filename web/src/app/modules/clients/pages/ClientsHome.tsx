@@ -26,7 +26,7 @@ export default function ClientsHome() {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const pageSize = 10;
+  const pageSize = 5;
 
   useEffect(() => {
   fetchClientes(page, pageSize, debouncedSearch).then((r) => {

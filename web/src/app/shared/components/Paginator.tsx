@@ -32,7 +32,7 @@ export default function Paginator({ page, pageSize, total, onChange }: Props) {
                     <FontAwesomeIcon icon={faChevronLeft} /> Anterior
                 </button>
             ) : <button 
-                    className="join-item btn btn" 
+                    className="join-item btn btn text-base-100" 
                     onClick={goPrev}
                 >
                     <FontAwesomeIcon icon={faChevronLeft} /> Anterior
@@ -42,14 +42,14 @@ export default function Paginator({ page, pageSize, total, onChange }: Props) {
             <button className="join-item btn btn-disabled"> Página {page} / {maxPage} </button>
 
             {!canNext ? (
-                <button className="join-item btn btn-disabled">
+                <button className="join-item btn btn-disabled ">
                     Siguiente <FontAwesomeIcon icon={faChevronRight} />
                 </button>
             ) : <button 
-                    className="join-item btn btn" 
+                    className="join-item btn btn text-base-100" 
                     onClick={goNext}
                 >
-                    <FontAwesomeIcon icon={faChevronLeft} /> Anterior
+                    Siguiente <FontAwesomeIcon icon={faChevronRight} />
                 </button>
             }
         </div> 
