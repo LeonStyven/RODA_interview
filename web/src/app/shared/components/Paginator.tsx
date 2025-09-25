@@ -28,9 +28,7 @@ export default function Paginator({ page, pageSize, total, onChange }: Props) {
 
         <div className="join">
             {!canPrev ? (
-                <button 
-                    className="join-item btn-disabled" 
-                >
+                <button className="join-item btn btn-disabled">
                     <FontAwesomeIcon icon={faChevronLeft} /> Anterior
                 </button>
             ) : <button 
@@ -41,12 +39,10 @@ export default function Paginator({ page, pageSize, total, onChange }: Props) {
                 </button>
             }
             
-            <button className="join-item btn"> Página {page} / {maxPage} </button>
+            <button className="join-item btn btn-disabled"> Página {page} / {maxPage} </button>
 
             {!canNext ? (
-                <button 
-                    className="join-item btn-disabled" 
-                >
+                <button className="join-item btn btn-disabled">
                     Siguiente <FontAwesomeIcon icon={faChevronRight} />
                 </button>
             ) : <button 
