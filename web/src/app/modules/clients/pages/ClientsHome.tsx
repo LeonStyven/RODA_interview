@@ -10,6 +10,10 @@ import ClientsTable from "../components/ClientsTable";
 import { fetchClientes } from "../services/clients.service";
 import type { Cliente } from "../interfaces/cliente.interface";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
+
+
 export default function ClientsHome() {
 
   // Variables para la busqueda del usuario
@@ -52,13 +56,14 @@ export default function ClientsHome() {
 
   return (
     <AppLayout>
-      <h2 className="text-lg font-semibold">Clientes</h2>
+      <h2 className="text-3xl font-semibold mb-4">Clientes</h2>
 
       {/* Input de busqueda */}
+      <FontAwesomeIcon icon={faFilter} />
       <input 
           type="text" 
           placeholder="Nombre del Cliente" 
-          className="input" 
+          className="input ml-4" 
           value={search}
       />
 
