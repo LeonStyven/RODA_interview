@@ -40,7 +40,7 @@ export default function CreditsList({ data, onSelect }: Props) {
                 ) : cr.estado === "cancelado" ? (
                   <div className="badge badge-soft badge-error">{cr.estado}</div>
                 ) : (
-                  <div className="badge badge-soft badge-ghost">{cr.estado}</div>
+                  <div className="badge badge-soft">{cr.estado}</div>
                 )}
               </td>
               <td>{cr.fecha_desembolso !== "" ? cr.fecha_desembolso : "Sin fecha"}</td>
